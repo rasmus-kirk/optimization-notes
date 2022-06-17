@@ -1,7 +1,7 @@
 # optimization-notes
 Optimization course notes
 
-To get dependencies using nix run:
+To get pandoc and latex dependencies using nix run:
 ```
 nix develop
 ```
