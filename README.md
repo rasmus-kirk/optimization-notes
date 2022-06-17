@@ -7,5 +7,5 @@ nix develop
 ```
 then run pandoc to generate pdfs:
 ```
-pandoc notes.md -o notes.pdf
+pandoc notes.md -o notes.pdf -f markdown-implicit_figures --toc
 ```

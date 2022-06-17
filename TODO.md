@@ -1,0 +1,1 @@
+- document that reductions are not two way in notes

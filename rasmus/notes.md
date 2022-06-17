@@ -3,6 +3,48 @@ title: Notes
 author: Rasmus Kirk
 date: 2022-06-15
 ---
+# Linear Programming Problems
+## Disposition
+- Punkt her
+
+## Definitions
+- **Target Function:** A Linear Function, over all variables, to be maximized.
+- **Polytope:** The geometric shape formed by the constraints.
+- **Solution:** Any possible values that can be assigned to the variables, ignoring constraints.
+- **Feasible Solution:** Any _Solution_, satisfying all constraints.
+- **Basic Solution:** A _Feasible Solution_ which lies in the geometric corner of the polytope.
+- **Optimal Solution:** A _Feasible Solution_ that maximizes the target function.
+
+## Linear Programming Problems
+- Problems of the form: $z = \sum_{i=0}^{n} c_i x_i$ where we want to maximize or minimize $z$
+
+## Standard form
+- Must be maximization problem
+- All constraints must be $\leq$
+
+## Fundemental Theorem of Linear Programming
+1. If no optimal solution exists, the problem is infeasible or unbounded
+2. If _1._ and there exists a feasible solution there exists a Basic Feasible Solution
+3. If there exists an optimal solution, there exists a Basic Optimal Solution
+- **TLDR:** If an optimal solution exists, there must be one in a corner of the convex polytope.
+
+## Simplex
+- Takes a Linear Programming Problem in Standard Form,
+- Returns the optimal solution
+- Simplex Tableu:
+	$$
+		\begin{bmatrix}
+		1 & \vec{-c^T} & 0\\
+		0 & A & \vec{b}
+		\end{bmatrix}
+	$$
+- **Slack variales:** Constraints of the form $c \leq c_1 x_1 + c_2 x_2 \rightarrow x_{n+1} = c - (c_1 x_1 + c_2 x_2)$
+- **Bland's Rule:**
+	- Why? Prevents cycles
+	- How?
+		- SP
+- 
+
 # P, NP and Cook's theorem
 ## NP completeness teori
 - Model definition:
