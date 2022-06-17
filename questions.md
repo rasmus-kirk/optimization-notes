@@ -1,0 +1,2 @@
+- Why do we convert a linear program to standard form in simplex
+	- The fundamental theorem of Linear Programming only works when the linear program is in standard form 
