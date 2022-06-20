@@ -42,8 +42,60 @@ date: 2022-06-15
 - **Bland's Rule:**
 	- Why? Prevents cycles
 	- How?
-		- SP
+		- Start by choosing the left-most non-basic variable with a positive coefficient
 - 
+
+### Example
+We start with:
+
+$$z  = 0 + 10 x_1 + 22 x_2$$
+$$11 \geq 3 x_1 + 4  x_2$$
+$$15 \geq 5 x_1 + 20 x_2$$
+
+Introducing slack variables:
+
+$$z = 0 + 10x_1 + 22x_2$$
+$$x_3 = 11 - 3x_1 - 4x_2$$
+$$x_4 = 15 - 5x_1 - 20x_2$$
+
+We transform to tableu form:
+
+|$x_1$|$x_2$|$x_3$|$x_4$|$Z$|$c$|
+|----:|----:|----:|----:|--:|--:|
+|    3|    4|    1|    0|  0| 11|
+|    5|   20|    0|    1|  0| 15|
+|  -10|  -22|    0|    0|  1|  0|
+
+1. We need to choose the _Entering Variable_ (Pivot Column ($p_c$)) using Bland's rule, we choose the first column.
+2. Then we need to choose an _Exiting Variable_ (Pivot Row ($p_r$)) using Bland's rule, $\ \textbf{Row 1: } 3/11 = 3+\frac{2}{3}\ $ and $\ \textbf{Row 2: } 15/5 = 3$, \textbf{Row 2} has the smallest non-negative value, so \textbf{Row 2} is the pivot row.
+3. We then perform elementary row operations such that $T_{p_c,p_r} = 1$ and all other elements in the pivot column should be zero, $\sum_i T_{p_c, i} = 1$:
+4. Repeat until all coefficients in the last row are non-negative (We don't need to repeat for this example):
+
+|$x_1$|$x_2$|$x_3$|$x_4$         |$Z$|$c$|
+|----:|----:|----:|-------------:|--:|--:|
+|    0|   -8|    1|$-\frac{3}{5}$|  0|  2|
+|    1|    4|    0| $\frac{1}{5}$|  0|  3|
+|    0|   18|    0|             2|  1| 30|
+
+We ignore all basic variables.
+
+|$x_1$|     |$x_3$|     |$Z$|$c$|
+|----:|----:|----:|----:|--:|--:|
+|    0|     |    1|     |  0|  2|
+|    1|     |    0|     |  0|  3|
+|    0|     |    0|     |  1| 30|
+
+We can make a last sanity check. $x_3 = 2$ so:
+$$x_3 = 11 - 3x_1 - 4x_2$$
+$$2 = 11 - 3 \cdot 3 - 4x_2$$
+$$2 + 4x_2 = 11 - 9$$
+$$4x_2 = 2 - 2$$
+$$x_2 = 0$$
+
+Inserting into our objective function:
+$$z = 0 + 10x_1 + 22x_2$$
+$$30 = 0 + 10 \cdot 3 + 22 \cdot 0$$
+$$30 = 30$$
 
 # P, NP and Cook's theorem
 ## NP completeness teori
