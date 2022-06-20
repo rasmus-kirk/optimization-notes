@@ -58,44 +58,46 @@ $$z = 0 + 10x_1 + 22x_2$$
 $$x_3 = 11 - 3x_1 - 4x_2$$
 $$x_4 = 15 - 5x_1 - 20x_2$$
 
-We transform to tableu form:
+1. We need to choose the _Entering Variable_, using Bland's rule we choose $x_1$.
+2. Then we need to choose an _Exiting Variable_, using Bland's rule, $\ x_3: 11/3 = 3+\frac{2}{3}\ $ and $\ x_4 : 15/5 = 3$, $x_4$ has the smallest non-negative value, so $x_4$ is the exiting variable.
 
-|$x_1$|$x_2$|$x_3$|$x_4$|$Z$|$c$|
-|----:|----:|----:|----:|--:|--:|
-|    3|    4|    1|    0|  0| 11|
-|    5|   20|    0|    1|  0| 15|
-|  -10|  -22|    0|    0|  1|  0|
+3. Isolate the entering variable, ($x_1$), from the definition of our exiting variable ($x_4$). 
 
-1. We need to choose the _Entering Variable_ (Pivot Column ($p_c$)) using Bland's rule, we choose the first column.
-2. Then we need to choose an _Exiting Variable_ (Pivot Row ($p_r$)) using Bland's rule, $\ \textbf{Row 1: } 3/11 = 3+\frac{2}{3}\ $ and $\ \textbf{Row 2: } 15/5 = 3$, \textbf{Row 2} has the smallest non-negative value, so \textbf{Row 2} is the pivot row.
-3. We then perform elementary row operations such that $T_{p_c,p_r} = 1$ and all other elements in the pivot column should be zero, $\sum_i T_{p_c, i} = 1$:
-4. Repeat until all coefficients in the last row are non-negative (We don't need to repeat for this example):
+4. Repeat 1-3 until all coefficients in the objective function are non-negative (We don't need to repeat for this example):
 
-|$x_1$|$x_2$|$x_3$|$x_4$         |$Z$|$c$|
-|----:|----:|----:|-------------:|--:|--:|
-|    0|   -8|    1|$-\frac{3}{5}$|  0|  2|
-|    1|    4|    0| $\frac{1}{5}$|  0|  3|
-|    0|   18|    0|             2|  1| 30|
+$$x_4 = 15 - 5x_1 - 20x_2$$
+$$x_4 + 5x_1 = 15 - 20x_2$$
+$$5x_1 = 15 - 20x_2 - x_4$$
+$$x_1 = 3 - 4x_2 - \frac{1}{5}x_4$$
 
-We ignore all basic variables.
+Inserting $x_1$ in $z$:
 
-|$x_1$|     |$x_3$|     |$Z$|$c$|
-|----:|----:|----:|----:|--:|--:|
-|    0|     |    1|     |  0|  2|
-|    1|     |    0|     |  0|  3|
-|    0|     |    0|     |  1| 30|
+$$z = 0 + 10 x_1 + 22 x_2$$
+$$z = 0 + (30 - 2x_4 - 40x_2) + 22 x_2$$
+$$z = 30 - 2x_4 - 18 x_2$$
 
-We can make a last sanity check. $x_3 = 2$ so:
-$$x_3 = 11 - 3x_1 - 4x_2$$
-$$2 = 11 - 3 \cdot 3 - 4x_2$$
-$$2 + 4x_2 = 11 - 9$$
-$$4x_2 = 2 - 2$$
-$$x_2 = 0$$
+Because we are done, we don't actually need to do it for $x_3$, but for completeness, we finish step 3:
 
-Inserting into our objective function:
-$$z = 0 + 10x_1 + 22x_2$$
-$$30 = 0 + 10 \cdot 3 + 22 \cdot 0$$
-$$30 = 30$$
+$$x_3 = 11 - 3 x_1 - 4 x_2$$
+$$x_3 = 11 - (9 - 12 x_2 - \frac{3}{5}x_4) - 4 x_2$$
+$$x_3 = 2 + 8 x_2 + \frac{3}{5}x_4$$
+
+So our final dictionary:
+$$z = 30 - 2x_4 - 18 x_2$$
+$$x_1 = 3 - 4x_2 - \frac{1}{5}x_4$$
+$$x_3 = 2 + 8 x_2 + \frac{3}{5}x_4$$
+
+This means that we have found our maximum, 30. If we want to find the necessary variables to produce 30. We know $x_2 = 0$, to isolate $x_4$:
+
+
+$$x_1 = 3 - 4x_2 - \frac{1}{5}x_4$$
+$$x_1 = 3 - 4 \cdot 0 - \frac{1}{5} \cdot 0$$
+$$x_1 = 3$$
+
+We can make a last sanity check:
+$$z = 0 + 10 \cdot 3 + 22 \cdot 0$$
+$$z = 0 + 30 + 0$$
+$$z = 30$$
 
 # P, NP and Cook's theorem
 ## NP completeness teori
