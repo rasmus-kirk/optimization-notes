@@ -185,6 +185,15 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 - **SAT:** Can the variables of a given CNF be replaced by either TRUE or FALSE such that the CNF evaluates to TRUE
 - **Cook's Theorem:** SAT $\in$ NPC
 
+
+
+# NP-Complete Problems
+- NP, P, NPC, NPH
+- SAT
+- CSAT
+- Cook's Theorem
+- 3SAT
+
 # Appendix
 ## Logic gates to CNF proofs
 ### NOT

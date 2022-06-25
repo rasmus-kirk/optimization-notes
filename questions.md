@@ -9,5 +9,8 @@
 - Why do we do dual linear programming, instead of just using simplex
 	- Certificate - we can verify that our implemented algorithm is correct
 - 2 phase simplex, what and why
+	- Make problem origo feasible
 - Ellipsoid as a replacement for Simplex
+	- Yes, they both solve Linear Programming Problem 
 - Is $LPP \in P$?
+	- Ellipsoid, as a decision problem, is in $P$
