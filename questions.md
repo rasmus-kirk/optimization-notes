@@ -1,4 +1,13 @@
 - Why do we convert a linear program to standard form in simplex
 	- The fundamental theorem of Linear Programming only works when the linear program is in standard form
-- Is all $p \in NP$ decision problems
+- Is NP problems decision problems
+	- Yes
 - Isn't the Travelling Salesman Problem, $p \notin NP$
+	- Find the _shortest path_ is not in $NP$, but find a path under $x$ _is_ in $NP$!
+- What is cycling
+	- Suppose we have some Dictionary $D_0$, and we pivot some number of times to get Dictionary $D_k$, then it's a cycle if $D_k$ has already occured: $D_0 \rightarrow D_1 \cdots D_k : D_k \in [D_0, D_{k-1}]$
+- Why do we do dual linear programming, instead of just using simplex
+	- Certificate - we can verify that our implemented algorithm is correct
+- 2 phase simplex, what and why
+- Ellipsoid as a replacement for Simplex
+- Is $LPP \in P$?

@@ -1,11 +1,22 @@
 ---
-title: Notes
+title: Optimization Notes
 author: Rasmus Kirk
-date: 2022-06-15
+date: 2022-06-24
 ---
-# Linear Programming Problems
+# 1. Linear Programming Problems
 ## Disposition
-- Punkt her
+- LPP
+- Standard form
+- Fund. Theorem
+- Simplex
+	- Two Phase
+	- Example
+	- Degeneracy
+
+### Example
+$$z  = 0 + x_1 + x_2$$
+$$1 \geq x_1 + x_2$$
+$$2 \geq x_1 + x_2$$
 
 ## Definitions
 - **Target Function:** A Linear Function, over all variables, to be maximized.
@@ -17,10 +28,11 @@ date: 2022-06-15
 
 ## Linear Programming Problems
 - Problems of the form: $z = \sum_{i=0}^{n} c_i x_i$ where we want to maximize or minimize $z$
+- Must have constraints
 
 ## Standard form
-- Must be maximization problem
-- All constraints must be $\leq$
+1. Must be maximization problem
+2. All constraints must be $\geq$
 
 ## Fundemental Theorem of Linear Programming
 1. If no optimal solution exists, the problem is infeasible or unbounded
@@ -39,11 +51,13 @@ date: 2022-06-15
 		\end{bmatrix}
 	$$
 - **Slack variales:** Constraints of the form $c \leq c_1 x_1 + c_2 x_2 \rightarrow x_{n+1} = c - (c_1 x_1 + c_2 x_2)$
+- **Cycles:** Suppose we have some Dictionary $D_0$, and we pivot some number of times to get Dictionary $D_k$, where we have already seen $D_k$:
+	- $D_0 \rightarrow D_1 \cdots D_k : D_k \in [D_0, D_{k-1}]$
 - **Bland's Rule:**
-	- Why? Prevents cycles
+	- Why?
+		- Prevents cycles
 	- How?
 		- Start by choosing the left-most non-basic variable with a positive coefficient
-- 
 
 ### Example
 We start with:
@@ -99,7 +113,41 @@ $$z = 0 + 10 \cdot 3 + 22 \cdot 0$$
 $$z = 0 + 30 + 0$$
 $$z = 30$$
 
-# P, NP and Cook's theorem
+# 2. Duality
+## Duality theorems/properties
+- For any feasible solution $p \in P$, and any feasible solution $d \in D$, $p \leq d$
+- **Weak Duality Theorem:**
+	- $p \leq d$
+- **Strong Duality Theorem:**
+	- $p = d \Leftrightarrow p = \text{optimal}(P) \land d = \text{optimal}(D)$
+- If P is unbounded then D is infeasible and vice versa
+
+## Matrix game
+$$
+	A =
+	\begin{bmatrix}
+		a_{1,1} & a_{1,2} & a_{1,3}\\
+		a_{2,1} & a_{2,2} & a_{2,3}\\
+		a_{3,1} & a_{3,2} & a_{3,3}\\
+	\end{bmatrix}
+$$
+
+## Integer Linear Programming
+Lecture 7 graph geometry
+
+## Duality example
+### P (max)
+$$z = c_1 x_1 + c_2 x_2 + c_3 x_3$$
+$$b_1 \geq a_{1,1} x_1 + a_{1,2} x_2 + a_{1,3} x_3$$
+$$b_2 \geq a_{2,1} x_1 + a_{2,2} x_2 + a_{2,3} x_3$$
+
+### D (min)
+$$w = b_1 y_1 + b_2 y_2$$
+$$c_1 \leq a_{1,1} y_1 + a_{2,1} y_2$$
+$$c_2 \leq a_{1,2} y_1 + a_{2,2} y_2$$
+$$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
+
+# 4. P, NP and Cook's theorem
 ## NP completeness teori
 - Model definition:
 	- Operates on bits and bites
@@ -137,3 +185,68 @@ $$z = 30$$
 - **SAT:** Can the variables of a given CNF be replaced by either TRUE or FALSE such that the CNF evaluates to TRUE
 - **Cook's Theorem:** SAT $\in$ NPC
 
+# Appendix
+## Logic gates to CNF proofs
+### NOT
+$$z \leftrightarrow \lnot x$$
+$$(\overline{z} + \overline{x}) (z + \overline{\overline{x}})$$
+$$(\overline{x} + \overline{z}) (x + z)$$
+
+### COPY
+$$z \leftrightarrow x$$
+$$(\overline{z} + x) (z + \overline{x})$$
+$$(x + \overline{z}) (\overline{x} + z)$$
+
+### AND
+$$z \leftrightarrow xy$$
+$$(z + \overline{(x \cdot y)}) (z + xy)$$
+$$(z + \overline{x} + \overline{y}) (z + xy)$$
+$$(z + \overline{x} + \overline{y}) (z + x) (z + y)$$
+
+### OR
+$$z \leftrightarrow xy$$
+$$(z + \overline{(x + y)}) (\overline{z} + (x + y))$$
+$$(z + (\overline{x} \cdot \overline{y})) (\overline{z} + x + y))$$
+$$(\overline{x} + z) (\overline{y} + z) (x + y + \overline{z})$$
+
+### XOR
+$$z \leftrightarrow x \oplus y$$
+$$z \leftrightarrow (\overline{x} + \overline{y}) (x + y)$$
+$$(\overline{z} + (\overline{x} + \overline{y}) (x + y)) \cdot (z + \overline{((\overline{x} + \overline{y}) (x + y)}))$$
+We start with the left side:
+
+$$\overline{z} + ((\overline{x} + \overline{y}) (x + y))$$
+$$(\overline{x} + \overline{y} + \overline{z}) (x + y + \overline{z})$$
+
+Then the right:
+$$z + (\overline{(\overline{x} + \overline{y})} + \overline{(x + y)})$$
+$$z + ((xy) + (\overline{x} \overline{y}))$$
+$$z + (((xy) + \overline{x}) \cdot ((xy) + \overline{y}))$$
+$$z + ((x + \overline{x}) (y + \overline{x}) (x + \overline{y}) (y + \overline{y}))$$
+$$z + (1 \cdot (y + \overline{x}) (x + \overline{y}) \cdot 1)$$
+$$z + ((\overline{x} + y) (x + \overline{y}))$$
+$$((\overline{x} + y + z) (x + \overline{y} + z))$$
+
+Finally giving us:
+$$(\overline{x} + \overline{y} + \overline{z}) (x + y + \overline{z}) (\overline{x} + y + z) (x + \overline{y} + z)$$
+
+### EQ
+$$z \leftrightarrow x \odot y$$
+$$z \leftrightarrow (x + \overline{y})(\overline{x} + y)$$
+
+We start with the left side:
+
+$$\overline{z} + ((x + \overline{y}) (\overline{x} + y))$$
+$$(x + \overline{y} + \overline{z}) (\overline{x} + y + \overline{z})$$
+
+Then the right:
+$$z + (\overline{(x + \overline{y})} + \overline{(\overline{x} + y)})$$
+$$z + ((x \overline{y}) + (\overline{x} y))$$
+$$z + (((x\overline{y}) + \overline{x}) \cdot ((x\overline{y}) + y))$$
+$$z + ((x + \overline{x}) (\overline{y} + \overline{x}) (x + y) (\overline{y} + y))$$
+$$z + (1 \cdot (\overline{y} + \overline{x}) (x + y) \cdot 1)$$
+$$z + ((\overline{x} + \overline{y}) (x + y))$$
+$$(\overline{x} + \overline{y} + z) (x + y + z)$$
+
+Leaving us with:
+$$(x + \overline{y} + \overline{z}) (\overline{x} + y + \overline{z})(\overline{x} + \overline{y} + z) (x + y + z)$$
