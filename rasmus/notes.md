@@ -2,6 +2,8 @@
 title: Optimization Notes
 author: Rasmus Kirk
 date: 2022-06-24
+header-includes: |
+    \usepackage{mathtools}
 ---
 # 1. Linear Programming Problems
 ## Disposition
@@ -13,10 +15,18 @@ date: 2022-06-24
 	- Example
 	- Degeneracy
 
-### Example
+### Examples
 $$z  = 0 + x_1 + x_2$$
 $$1 \geq x_1 + x_2$$
 $$2 \geq x_1 + x_2$$
+
+$$
+	\begin{matrix}
+		\text{max/min} & z = c^Tx \\
+		   s.t. & Ax \begin{psmallmatrix} \leq \\ \geq \\ = \end{psmallmatrix} b\\
+		        & x \geq 0 \\
+	\end{matrix}
+$$
 
 ## Definitions
 - **Target Function:** A Linear Function, over all variables, to be maximized.
@@ -114,6 +124,52 @@ $$z = 0 + 30 + 0$$
 $$z = 30$$
 
 # 2. Duality
+
+## Disposition
+
+### Examples
+**General Example:**
+
+**Primal**
+$$
+	\begin{matrix}
+		\text{max} & z = c^Tx \\
+		   s.t. & Ax \leq b\\
+		        & x \geq 0 \\
+	\end{matrix}
+$$
+
+**Dual**
+$$
+	\begin{matrix}
+		\text{min} & w = b^Ty \\
+		   s.t. & A^Ty \geq c\\
+		        & y \geq 0 \\
+	\end{matrix}
+$$
+
+**Matrix Game Example:**
+
+**Primal**
+$$
+	\begin{matrix}
+		\text{max} & z = v \\
+		   s.t. & A\overrightarrow{x} \leq \overrightarrow{v}\\
+		        & \overrightarrow{x} \geq \overrightarrow{0} \\
+		        & \overrightarrow{x}\overrightarrow{1} = 1 \\
+	\end{matrix}
+$$
+
+**Dual**
+$$
+	\begin{matrix}
+		\text{max} & w = u \\
+		   s.t. & A\overrightarrow{y} \geq \overrightarrow{u}\\
+		        & \overrightarrow{x} \geq \overrightarrow{0} \\
+		        & \overrightarrow{y}\overrightarrow{1} = 1 \\
+	\end{matrix}
+$$
+
 ## Duality theorems/properties
 - For any feasible solution $p \in P$, and any feasible solution $d \in D$, $p \leq d$
 - **Weak Duality Theorem:**
@@ -188,11 +244,11 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 
 
 # NP-Complete Problems
-- NP, P, NPC, NPH
-- SAT
+- NP, P, NPC
 - CSAT
-- Cook's Theorem
 - 3SAT
+- Clique
+
 
 # Appendix
 ## Logic gates to CNF proofs
