@@ -2,6 +2,7 @@
 title: Optimization Notes
 author: Rasmus Kirk Jakobsen
 date: 2022-06-28
+linkcolor: blue
 header-includes: |
     \usepackage{mathtools}
 ---
@@ -137,42 +138,44 @@ $$z = 30$$
 	- Fair Game 
 	- Principle of Indifference
 
-### Examples
-**General Example:**
+## Examples
 
-**Primal**
+### General Example
+
+Primal:
 $$
 	\begin{matrix}
+		\textbf{P:}  & \\
 		\text{max} & z = c^Tx \\
 		   s.t. & Ax \leq b\\
 		        & x \geq 0 \\
 	\end{matrix}
 $$
 
-**Dual**
+Dual:
 $$
 	\begin{matrix}
+		\textbf{D:}  & \\
 		\text{min} & w = b^Ty \\
 		   s.t. & A^Ty \geq c\\
 		        & y \geq 0 \\
 	\end{matrix}
 $$
 
-**Matrix Game Example:**
+### Rock Paper Scissors
 
-**Rock Paper Scissors**
-$$
-	A =
-	\begin{bmatrix}
-		 0 &  1 & -1 \\
-		-1 &  0 &  1 \\
-		 1 & -1 &  0 \\
-	\end{bmatrix}
-$$
+Our matrix $A$:
 
-**Primal (Column Player)**
+|          | Rock | Paper | Scissors |
+|----------|-----:|------:|---------:|
+| Rock     |  $0$ |   $1$ |     $-1$ |
+| Paper    | $-1$ |   $0$ |      $1$ |
+| Scissors |  $1$ |  $-1$ |      $0$ |
+
+Primal (Column Player):
 $$
 	\begin{matrix}
+		\textbf{P:}  & \\
 		\text{max} & z = v \\
 		     s.t.  & A\overrightarrow{p} \leq \overrightarrow{v}\\
 		           & \overrightarrow{p} \geq \overrightarrow{0} \\
@@ -180,9 +183,10 @@ $$
 	\end{matrix}
 $$
 
-**Dual (Row Player)**
+Dual (Row Player):
 $$
 	\begin{matrix}
+		\textbf{D:}  & \\
 		\text{max} & w = u \\
 		   s.t. & A^T\overrightarrow{q} \geq \overrightarrow{u}\\
 		        & \overrightarrow{q} \geq \overrightarrow{0} \\
@@ -248,6 +252,7 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 ### The Minimum Cost Problem
 
 ### Ford-Fulerson Algorithm
+See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 
 # 4. P, NP and Cook's theorem
 
@@ -309,6 +314,8 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 - What is Approximation Algorithms?
 - Max Cut Deterministic
 - Max Cut Randomized
+
+## Deterministic Max-Cut Example
 
 # Appendix
 ## Logic gates to CNF proofs
