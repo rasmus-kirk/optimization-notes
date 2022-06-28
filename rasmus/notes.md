@@ -1,19 +1,19 @@
 ---
 title: Optimization Notes
-author: Rasmus Kirk
-date: 2022-06-24
+author: Rasmus Kirk Jakobsen
+date: 2022-06-28
 header-includes: |
     \usepackage{mathtools}
 ---
 # 1. Linear Programming Problems
 ## Disposition
-- LPP
+- Linear Programming Problems
 - Standard form
-- Fund. Theorem
+- Fundemental Theorem of Linear Programming
 - Simplex
 	- Two Phase
 	- Example
-	- Degeneracy
+	- (Degeneracy)
 
 ### Examples
 $$z  = 0 + x_1 + x_2$$
@@ -29,7 +29,7 @@ $$
 $$
 
 ## Definitions
-- **Target Function:** A Linear Function, over all variables, to be maximized.
+- **Objective Function:** A Linear Function, over all variables, to be maximized.
 - **Polytope:** The geometric shape formed by the constraints.
 - **Solution:** Any possible values that can be assigned to the variables, ignoring constraints.
 - **Feasible Solution:** Any _Solution_, satisfying all constraints.
@@ -126,6 +126,16 @@ $$z = 30$$
 # 2. Duality
 
 ## Disposition
+- Duality
+	- Motivation
+	- Geometric intuition
+	- Strong & Weak Duality Theorems
+	- Complimentary Slackness
+- Matrix Games
+	- Example
+	- Nash Equilibrium
+	- Fair Game 
+	- Principle of Indifference
 
 ### Examples
 **General Example:**
@@ -150,23 +160,33 @@ $$
 
 **Matrix Game Example:**
 
-**Primal**
+**Rock Paper Scissors**
+$$
+	A =
+	\begin{bmatrix}
+		 0 &  1 & -1 \\
+		-1 &  0 &  1 \\
+		 1 & -1 &  0 \\
+	\end{bmatrix}
+$$
+
+**Primal (Column Player)**
 $$
 	\begin{matrix}
 		\text{max} & z = v \\
-		   s.t. & A\overrightarrow{x} \leq \overrightarrow{v}\\
-		        & \overrightarrow{x} \geq \overrightarrow{0} \\
-		        & \overrightarrow{x}\overrightarrow{1} = 1 \\
+		     s.t.  & A\overrightarrow{p} \leq \overrightarrow{v}\\
+		           & \overrightarrow{p} \geq \overrightarrow{0} \\
+		           & \overrightarrow{p}\overrightarrow{1} = 1 \\
 	\end{matrix}
 $$
 
-**Dual**
+**Dual (Row Player)**
 $$
 	\begin{matrix}
 		\text{max} & w = u \\
-		   s.t. & A\overrightarrow{y} \geq \overrightarrow{u}\\
-		        & \overrightarrow{x} \geq \overrightarrow{0} \\
-		        & \overrightarrow{y}\overrightarrow{1} = 1 \\
+		   s.t. & A^T\overrightarrow{q} \geq \overrightarrow{u}\\
+		        & \overrightarrow{q} \geq \overrightarrow{0} \\
+		        & \overrightarrow{q}\overrightarrow{1} = 1 \\
 	\end{matrix}
 $$
 
@@ -203,7 +223,40 @@ $$c_1 \leq a_{1,1} y_1 + a_{2,1} y_2$$
 $$c_2 \leq a_{1,2} y_1 + a_{2,2} y_2$$
 $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 
+# 3. Network Flows
+
+## Disposition
+- Network Flow
+- Minimum-cost Flow problem
+- Max cut-min flow theorem
+- Simplex
+
+## Network Flow
+
+### Balances
+- A flow network: $D = (N, A)$
+- Outgoing flow from node $i$: $\sum_{ij \in A} x_{ij}$ 
+- Ingoing flow to node $i$: $\sum_{ji \in A} x_{ji}$ 
+- Balance at node $i$: $b_i = \text{out} - \text{in} = \sum_{ij \in A} x_{ij} - \sum_{ji \in A} x_{ji}$
+- Balance restriction: $\sum_{i \in N} b_i = 0$
+- If $b_i > 0$ then node $i$ is a source, if $b_i < 0$ then node $i$ is a sink
+
+### Arc Constraints
+- Lower ($l_{ij}$) and upper ($u_{ij}$) bound for flows in nodes: $l_{ij} \leq x_{ij} \leq u_{ij}$
+- Assumption: $0 \leq l_{ij} \leq u_{ij}$
+
+### The Minimum Cost Problem
+
+### Ford-Fulerson Algorithm
+
 # 4. P, NP and Cook's theorem
+
+## Disposition
+- Decision Problems
+- P, NP, NPC, NPH
+- Cook's theorem
+
+
 ## NP completeness teori
 - Model definition:
 	- Operates on bits and bites
@@ -241,14 +294,21 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 - **SAT:** Can the variables of a given CNF be replaced by either TRUE or FALSE such that the CNF evaluates to TRUE
 - **Cook's Theorem:** SAT $\in$ NPC
 
+# 5. NP-Complete Problems
 
-
-# NP-Complete Problems
-- NP, P, NPC
+## Disposition
+- P, NP, NPC, NPH
 - CSAT
 - 3SAT
 - Clique
 
+# 6. Approximation Algorithms and Search Heuristics
+
+## Disposition
+- P, NP, NPC, NPH 
+- What is Approximation Algorithms?
+- Max Cut Deterministic
+- Max Cut Randomized
 
 # Appendix
 ## Logic gates to CNF proofs
