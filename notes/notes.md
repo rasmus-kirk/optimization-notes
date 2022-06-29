@@ -1,11 +1,12 @@
 ---
 title: Optimization Course Notes
 author: Rasmus Kirk Jakobsen
-date: 2022-06-29
+date: \today
 linkcolor: blue
 header-includes: |
-    \usepackage{mathtools}
-    \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+	\usepackage[style=iso]{datetime2}
+	\usepackage{mathtools}
+	\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 ---
 
 \pagebreak
@@ -214,8 +215,9 @@ $$
 	- Balances
 	- Arc constraints
 - Maximum $(s, t)$-flow
-- Max flow-min cut theorem
 - Ford-Fulkerson example
+- Max flow-min cut theorem
+	- Duality
 
 ## Network Flow
 
@@ -230,6 +232,9 @@ $$
 ### Arc Constraints
 - Lower ($l_{ij}$) and upper ($u_{ij}$) bound for flows in nodes: $l_{ij} \leq x_{ij} \leq u_{ij}$
 - Assumption: $0 \leq l_{ij} \leq u_{ij}$
+
+### Integrality Theorem
+- If all balance constraints, lower bounds, and upper bounds are integet and there is a feasible flow, then there is a minimum cost feasible flow that is integer 
 
 ### The Maximum $(s, t)$-flow Problem
 - One source ($s$)
