@@ -3,9 +3,9 @@ Optimization course notes
 
 To get pandoc and latex dependencies using nix run:
 ```
-nix develop
+nix develop --experimental-features flakes --experimental-features nix-command
 ```
 then run pandoc to generate pdfs:
 ```
-pandoc notes.md -o notes.pdf -f markdown-implicit_figures --toc
+pandoc ./notes/notes.md -o ./notes/notes.pdf -f markdown-implicit_figures --toc
 ```
