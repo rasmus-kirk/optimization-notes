@@ -1,5 +1,5 @@
 ---
-title: Optimization Notes
+title: Optimization Course Notes
 author: Rasmus Kirk Jakobsen
 date: 2022-06-28
 linkcolor: blue
@@ -8,6 +8,7 @@ header-includes: |
     \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 ---
 
+\pagebreak
 # 1. Linear Programming Problems
 ## Disposition
 - Linear Programming Problems
@@ -126,6 +127,7 @@ $$z = 0 + 10 \cdot 3 + 22 \cdot 0$$
 $$z = 0 + 30 + 0$$
 $$z = 30$$
 
+\pagebreak
 # 2. Duality
 
 ## Disposition
@@ -140,9 +142,9 @@ $$z = 30$$
 	- Fair Game 
 	- Principle of Indifference
 
-## Examples
+### Examples
 
-### General Example
+#### General Example
 
 Primal:
 $$
@@ -164,7 +166,7 @@ $$
 	\end{matrix}
 $$
 
-### Rock Paper Scissors
+#### Rock Paper Scissors
 
 Our matrix $A$:
 
@@ -204,37 +206,15 @@ $$
 	- $p = d \Leftrightarrow p = \text{optimal}(P) \land d = \text{optimal}(D)$
 - If P is unbounded then D is infeasible and vice versa
 
-## Matrix game
-$$
-	A =
-	\begin{bmatrix}
-		a_{1,1} & a_{1,2} & a_{1,3}\\
-		a_{2,1} & a_{2,2} & a_{2,3}\\
-		a_{3,1} & a_{3,2} & a_{3,3}\\
-	\end{bmatrix}
-$$
-
-## Integer Linear Programming
-Lecture 7 graph geometry
-
-## Duality example
-### P (max)
-$$z = c_1 x_1 + c_2 x_2 + c_3 x_3$$
-$$b_1 \geq a_{1,1} x_1 + a_{1,2} x_2 + a_{1,3} x_3$$
-$$b_2 \geq a_{2,1} x_1 + a_{2,2} x_2 + a_{2,3} x_3$$
-
-### D (min)
-$$w = b_1 y_1 + b_2 y_2$$
-$$c_1 \leq a_{1,1} y_1 + a_{2,1} y_2$$
-$$c_2 \leq a_{1,2} y_1 + a_{2,2} y_2$$
-$$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
-
+\pagebreak
 # 3. Network Flows
 
 ## Disposition
 - Network Flow
-- Minimum-cost Flow problem
-- Max cut-min flow theorem
+	- Balances
+	- Arc constraints
+- Maximum $(s, t)$-flow
+- Max flow-min cut theorem
 - Ford-Fulkerson example
 
 ## Network Flow
@@ -269,13 +249,18 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 ### Ford-Fulkerson Algorithm
 See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 
+\pagebreak
 # 4. P, NP and Cook's theorem
 
 ## Disposition
 - Decision Problems
+	- Modelling inputs
+	- Modelling boolean functions
+	- Modelling optimization problems
 - P, NP, NPC, NPH
+	- Draw graph
 - Cook's theorem
-
+	- CSAT $\leq$ SAT
 
 ## NP completeness teori
 - Model definition:
@@ -295,9 +280,9 @@ See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 
 - **P:** All decision problems that can be solved by a deterministic Turing machine in polynomial time.
 - **NP:** All decision problems, where the solutions that evaluates to "yes," can be verified in polynomial time.
-- **NPC:** A set of decision problems that can all be reduced into one another.
-- **NPI:** All `NP` decision problems that are _not_ in `NPC` or `NP`.
-- **NP-hard:** All decision problems that are _at least_ as hard as `NPC`.
+- **NP-Hard:** All Problems that `NP` problems can be reduced to.
+- **NPC:** $\texttt{NP} \cap \texttt{NPH}$
+- **NPI:** $\texttt{NP} - \texttt{NPC} - \texttt{NPH}$
 
 - $L_1 \leq L_2 \Leftrightarrow (x \in L_1 \Leftrightarrow r(x) \in L_2)$
 
@@ -314,6 +299,7 @@ See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 - **SAT:** Can the variables of a given CNF be replaced by either TRUE or FALSE such that the CNF evaluates to TRUE
 - **Cook's Theorem:** SAT $\in$ NPC
 
+\pagebreak
 # 5. NP-Complete Problems
 
 ## Disposition
@@ -322,13 +308,14 @@ See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 - 3SAT
 - Clique
 
+\pagebreak
 # 6. Approximation Algorithms and Search Heuristics
 
 ## Disposition
 - P, NP, NPC, NPH 
 - What is Approximation Algorithms?
-- Max Cut Deterministic
-- Max Cut Randomized
+- Max-Cut Deterministic
+- Max-Cut Randomized
 
 ## Deterministic Max-Cut Example
 Given a graph $G = (V, E)$
@@ -414,8 +401,10 @@ To find $\rho$:
 
 $$\rho = \frac{OPT}{C} = \frac{OPT}{E[\texttt{RAN}]} = \frac{w(V)}{\frac{w(V)}{2}} = 2 \cdot \frac{w(V)}{w(V)} = 2$$
 
+\pagebreak
 # Appendix
-## Logic gates to CNF proofs
+## CSAT gates to CNF proofs
+
 ### NOT
 $$z \leftrightarrow \lnot x$$
 $$(\overline{z} + \overline{x}) (z + \overline{\overline{x}})$$
@@ -428,9 +417,9 @@ $$(x + \overline{z}) (\overline{x} + z)$$
 
 ### AND
 $$z \leftrightarrow xy$$
-$$(z + \overline{(x \cdot y)}) (z + xy)$$
-$$(z + \overline{x} + \overline{y}) (z + xy)$$
-$$(z + \overline{x} + \overline{y}) (z + x) (z + y)$$
+$$(z + \overline{(x \cdot y)}) (\overline{z} + xy)$$
+$$(z + \overline{x} + \overline{y}) (\overline{z} + xy)$$
+$$(z + \overline{x} + \overline{y}) (\overline{z} + x) (\overline{z} + y)$$
 
 ### OR
 $$z \leftrightarrow xy$$
