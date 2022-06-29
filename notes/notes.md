@@ -1,7 +1,7 @@
 ---
 title: Optimization Course Notes
 author: Rasmus Kirk Jakobsen
-date: 2022-06-28
+date: 2022-06-29
 linkcolor: blue
 header-includes: |
     \usepackage{mathtools}
@@ -304,9 +304,10 @@ See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 
 ## Disposition
 - P, NP, NPC, NPH
-- CSAT
-- 3SAT
-- Clique
+- CSAT $\leq$ 3SAT
+- 3SAT $\leq$ Clique
+	- Clique $\leq$ Maximum Independent Set
+	- Maximum Independent Set $\leq$ Minimum Vertex Cover
 
 \pagebreak
 # 6. Approximation Algorithms and Search Heuristics
