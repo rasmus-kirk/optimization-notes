@@ -5,7 +5,9 @@ date: 2022-06-28
 linkcolor: blue
 header-includes: |
     \usepackage{mathtools}
+    \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 ---
+
 # 1. Linear Programming Problems
 ## Disposition
 - Linear Programming Problems
@@ -233,7 +235,7 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 - Network Flow
 - Minimum-cost Flow problem
 - Max cut-min flow theorem
-- Simplex
+- Ford-Fulkerson example
 
 ## Network Flow
 
@@ -249,9 +251,22 @@ $$c_3 \leq a_{1,3} y_1 + a_{2,3} y_2$$
 - Lower ($l_{ij}$) and upper ($u_{ij}$) bound for flows in nodes: $l_{ij} \leq x_{ij} \leq u_{ij}$
 - Assumption: $0 \leq l_{ij} \leq u_{ij}$
 
-### The Minimum Cost Problem
+### The Maximum $(s, t)$-flow Problem
+- One source ($s$)
+- One sink ($t$)
+- Flow conservation restriction: $b_i = 0 \ |\  i \in N \textbackslash \{s,t\}$
+- Flow is feasible if:
+	- No negative flows
+	- Flow conservation restriction
+	- Must satisfy arc constraints
+- Convert maximum $(s,t)$-flow problem ($D = (N,A)$) to minimum flow problem:
+	- New edge $s$ to $t$ is added to $D'$ with cost $-1$ and upper bound $\infty$
+	- All other edges has cost 0
+	- All other nodes has balance $+$
+	- Feasible flows $x$ in $D$ is feasible flows $x' \in D'$ where cost of $x' = -x$
 
-### Ford-Fulerson Algorithm
+
+### Ford-Fulkerson Algorithm
 See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 
 # 4. P, NP and Cook's theorem
@@ -316,6 +331,88 @@ See the following [video](https://www.youtube.com/watch?v=Tl90tNtKvxs)
 - Max Cut Randomized
 
 ## Deterministic Max-Cut Example
+Given a graph $G = (V, E)$
+
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\SetAlgoLined
+$S$ := $\emptyset$, $T$ := $\emptyset$ \\
+\For{$v \in V$}{
+	\eIf{$w(\{v\},S) > w(\{v\},T)$}{
+		$T := T \cup \{v\}$ \\
+	}{
+		$S := S \cup \{v\}$ \\
+	}
+}
+\Return{$(S,T)$}
+\caption{Deterministic Max-Cut Algorithm}
+\end{algorithm}
+
+Most optimal case is where all edges cross $S$ and $T$, in short, the sum of all weights in $V$:
+$$OPT = w(V)$$
+
+Now to derive $\rho$ for the deterministic algorithm:
+
+\begin{equation*}
+\begin{split}
+w(S,T)          & \geq w(S,S) + w(T,T) \\
+w(S,T) + w(S,T) & \geq w(S,T) + w(S,S) + w(T,T) \\
+2 w(S,T)        & \geq w(V) \\
+w(S,T)          & \geq \frac{w(V)}{2} \\
+\end{split}
+\end{equation*}
+
+We chose our $C$ to be the worst case scenario that our algorithm can come up with:
+$$C = \frac{w(V)}{2}$$
+
+Finding approximation ratio:
+
+$$\rho = \frac{OPT}{C} = \frac{w(V)}{\frac{w(V)}{2}} = 2 \cdot \frac{w(V)}{w(V)} = 2$$
+
+## Randomized Max-Cut Example
+
+Given a graph $G = (V, E)$
+
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\SetAlgoLined
+$S$ := $\emptyset$, $T$ := $\emptyset$ \\
+\For{$v \in V$}{
+	Let $b \in_R \{0,1\}$ \\
+	\eIf{$b=1$}{
+		$T := T \cup \{v\}$ \\
+	}{
+		$S := S \cup \{v\}$ \\
+	}
+}
+\Return{$(S,T)$}
+\caption{Randomized Max-Cut Algorithm}
+\end{algorithm}
+
+Optimal solution same as in the deterministic:
+$$OPT = w(V)$$
+
+The probability that an edge will connect $S$ and $T$:
+
+$$P(w_{(i,j) \in (S,T)}) = \frac{1}{2}$$
+
+$$E[\ |E_{\in (S,T)}|\ ] = |E_{\in G}| \ P(w_{(i,j) \in (S,T)})$$
+$$E[\ |E_{\in (S,T)}|\ ] = \frac{|E_{\in G}|}{2})$$
+
+The expected value of a randomly chosen edge:
+
+$$E[e \in E] = \frac{w(V)}{|E_{\in G}|}$$
+
+To find $C$:
+
+$$C = E[\texttt{RAN}]$$
+$$C = E[{e \in E}] \cdot E[\ |E_{\in (S,T)}|\ ])$$
+$$C = \frac{w(V)}{|E|} \cdot \frac{|E|}{2}$$
+$$C = \frac{w(V)}{2}$$
+
+To find $\rho$:
+
+$$\rho = \frac{OPT}{C} = \frac{OPT}{E[\texttt{RAN}]} = \frac{w(V)}{\frac{w(V)}{2}} = 2 \cdot \frac{w(V)}{w(V)} = 2$$
 
 # Appendix
 ## Logic gates to CNF proofs
