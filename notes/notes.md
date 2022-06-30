@@ -55,6 +55,10 @@ $$
 3. If there exists an optimal solution, there exists a Basic Optimal Solution
 - **TLDR:** If an optimal solution exists, there must be one in a corner of the convex polytope.
 
+## Degeneracy
+- A dictionary is said to be degenerate if one or more $b_i$'s are 0
+- Degenerate dictionaries more often lead to cycling
+
 ## Simplex
 - Takes a Linear Programming Problem in Standard Form,
 - Returns the optimal solution
@@ -133,10 +137,10 @@ $$z = 30$$
 
 ## Disposition
 - Duality
-	- Motivation
 	- Geometric intuition
 	- Strong & Weak Duality Theorems
 	- Complimentary Slackness
+	- Motivation
 - Matrix Games
 	- Example
 	- Nash Equilibrium
@@ -206,6 +210,11 @@ $$
 - **Strong Duality Theorem:**
 	- $p = d \Leftrightarrow p = \text{optimal}(P) \land d = \text{optimal}(D)$
 - If P is unbounded then D is infeasible and vice versa
+
+## Game Theory
+- For a matrix game with $m \times n$ matrix $A$, if Player I uses the mixed strategy $p = (p_1, \cdots, p_m)T$ and Player II uses column $j$, Player I’s average payoff is $\sum^m_{i=1} 1 p_i a_{ij}$. If $V$ is the value of the game, an optimal strategy, $p$, for I is characterized by the property that Player I’s average payoff is at least $V$ no matter what column j Player II uses, i.e.
+
+$$\sum^m_{i=1}p_i a_{ij} \leq V \quad \forall j \in \{ 0, 1, 2, \ldots n \}$$
 
 \pagebreak
 # 3. Network Flows
